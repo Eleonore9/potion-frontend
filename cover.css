@@ -100,3 +100,13 @@ body {
     width: 700px;
 }
 }
+
+
+/* Add pieces */
+
+/* jumbotron */
+
+.jumbotron {
+    margin-left: -30%;
+    margin-right: 10%;
+}
