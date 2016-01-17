@@ -6,6 +6,7 @@ $( document ).ready(function() {
 
 function getAllData() {
   // Get all program. languages info
-  $.get("https://potion-making.herokuapp.com/all-data").done(function(data)
-							     {data;})
+  $.get("http://potion-making.herokuapp.com/all-data").done(function(data)
+							    { var allData = data;
+							      allData;})
 }
