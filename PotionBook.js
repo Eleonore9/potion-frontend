@@ -6,8 +6,7 @@ $( document ).ready(function() {
 
 function getAllData() {
   // Get all program. languages info
-  $.get("http://localhost:5000/all-data",
-	{signature: authHeader}).done(function(data){ var allData = data;
+  $.get("http://localhost:5000/all-data").done(function(data){ var allData = data;
 							for (i = 0; i < allData.length; i++){
 							  console.log(allData[i]);
 							}
