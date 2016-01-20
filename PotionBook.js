@@ -10,9 +10,12 @@ function getAllData() {
   $.getJSON( "http://localhost:5000/all-data", function() {
   }).done(function(data) {
     console.log( "SUCCESS" );
-    $.each( data, function( key, val ) {
-      $(".list-group").append('<li class="list-group-item">' + val.name + "</li>");
-    });
+    for(i=0; i < data.length; i++){
+      var name = '<button type="button" class="list-group-item">' + data[i].name + "</button>";
+      var paradigm = '<div class="info hidden">' + data[i].paradigm + "</div>";
+      $(".list-group").append(name);
+      $(".description").append(paradigm);
+    }
   })
   .fail(function(allData, textStatus, error) {
     console.log( "error" );
