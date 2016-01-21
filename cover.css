@@ -10,6 +10,7 @@ a, a:focus, a:hover {
 }
 html, body {
     background-color: #333;
+    /*background-color: #544430;*/
     height: 100%;
 }
 body {
@@ -36,7 +37,7 @@ body {
     padding: 30px;
 }
 .masthead-brand {
-    margin-bottom: 10px;
+    margin-bottom: 25px;
     margin-top: 10px;
 }
 .masthead-nav > li {
@@ -63,7 +64,7 @@ body {
 }
 @media (min-width: 768px) {
 .masthead-brand {
-    float: left;
+    /*float: left;*/
 }
 .masthead-nav {
     float: right;
@@ -84,12 +85,12 @@ body {
 }
 @media (min-width: 768px) {
 .masthead {
-    position: fixed;
+    /*position: fixed;*/
     top: 0;
 }
 .mastfoot {
     bottom: 0;
-    position: fixed;
+    /*position: fixed;*/
 }
 .site-wrapper-inner {
     vertical-align: middle;
@@ -107,13 +108,30 @@ body {
 
 /* Add pieces */
 
-/* jumbotron */
-
-.jumbotron {
-    margin-left: -30%;
-    margin-right: 10%;
+.panel {
+    margin-bottom: 0;
 }
 
-.row {
-    margin-top: 5%;
+.panel-heading:focus, .panel-heading:hover {
+			background-color: #B9BFC9;
+			cursor: pointer;
+			
 }
+
+.panel .panel-body {
+    text-align: left;
+    background-color: #C4BEAC;
+    color: #544430;
+}
+
+.container {
+    width: auto;
+}
+
+.masthead h1 {
+    font-family: 'Calligraffitti', cursive;
+    color: #C4BEAC;
+}
+
+
+

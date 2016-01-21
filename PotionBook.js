@@ -1,21 +1,51 @@
 $( document ).ready(function() {
-  console.log( "HELLO!" );
   getAllData();
-  console.log( "BYE!" );
+  
+  $(".label.paradigm").click(function(){
+    $.getJSON("https://potion-making.herokuapp.com/all-paradigms" , function() {
+    }).done(function(data) {
+      console.log( "SUCCESS!" );
+      $(".filters").empty();
+      for(i=0; i < data.length; i++){ $(".filters")
+				      .append('<button type="button" class="btn btn-default">' + data[i] + '</button>')}
+    });
+  });
+
+  $(".label.type").click(function(){
+    $.getJSON("https://potion-making.herokuapp.com/all-types" , function() {
+    }).done(function(data) {
+      console.log( "SUCCESS!!" );
+      $(".filters").empty();
+      for(i=0; i < data.length; i++){ $(".filters")
+				      .append('<button type="button" class="btn btn-default">' + data[i] + '</button>')}
+    });
+  });
+
+  $(".label.use").click(function(){
+    $.getJSON("https://potion-making.herokuapp.com/all-uses" , function() {
+    }).done(function(data) {
+      console.log( "SUCCESS!!!" );
+      $(".filters").empty();
+      for(i=0; i < data.length; i++){ $(".filters")
+				      .append('<button type="button" class="btn btn-default">' + data[i] + '</button>')}
+    });
+  });
 });
 
 
 function getAllData() {
   // Get all programming languages info
-  $.getJSON( "http://localhost:5000/all-data", function() {
+  $.getJSON( "https://potion-making.herokuapp.com/all-data", function() {
   }).done(function(data) {
     console.log( "SUCCESS" );
     for(i=0; i < data.length; i++){
-      var name = '<button type="button" class="list-group-item">' + data[i].name + "</button>";
-      var paradigm = '<div class="info hidden">' + data[i].paradigm + "</div>";
-      $(".list-group").append(name);
-      $(".description").append(paradigm);
+      var info = '<div class="language panel panel-default"><div class="name-label panel-heading"><h4>' + data[i].name + '</h4></div><div class="info hidden panel-body"> <b>Paradigm</b>: ' + data[i].paradigm + '<br><b>Use</b>: ' + data[i].use + '<br><b>Type</b>: ' + data[i].type + '<br><b>Tutorial(s)</b>: ' + data[i].tutorials + '</div></div>';
+      $(".display-data").append(info);
     }
+    $(".language").click(function(){
+      $(".display-data").find(".info.panel-body").addClass("hidden");
+      $(this).find(".info.hidden.panel-body").removeClass("hidden");
+    });
   })
   .fail(function(allData, textStatus, error) {
     console.log( "error" );
@@ -26,3 +56,4 @@ function getAllData() {
 
 
 // "https://potion-making.herokuapp.com/all-data"
+// "http://localhost:5000/all-data"
