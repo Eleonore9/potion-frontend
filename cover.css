@@ -120,8 +120,13 @@ body {
 
 .panel .panel-body {
     text-align: left;
-    background-color: #C4BEAC;
+    background-color: #EAE5DE;
     color: #544430;
+    text-shadow: none;
+}
+
+.panel .panel-body a {
+    color: #514C45;
 }
 
 .container {

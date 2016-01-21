@@ -39,7 +39,17 @@ function getAllData() {
   }).done(function(data) {
     console.log( "SUCCESS" );
     for(i=0; i < data.length; i++){
-      var info = '<div class="language panel panel-default"><div class="name-label panel-heading"><h4>' + data[i].name + '</h4></div><div class="info hidden panel-body"> <b>Paradigm</b>: ' + data[i].paradigm + '<br><b>Use</b>: ' + data[i].use + '<br><b>Type</b>: ' + data[i].type + '<br><b>Tutorial(s)</b>: ' + data[i].tutorials + '</div></div>';
+      var tuts = data[i].tutorials;
+      //var tutsLinks = '<a href="' + tuts.join('"></a> <a href="') + "</a>";
+      var linksList = [];
+      for(j=0; j < tuts.length; j++){
+	var link = '<a href="' + tuts[j] + '">' + tuts[j] + '</a>';
+	linksList.push(link);
+      }
+      console.log(linksList);
+      var tutsLinks = linksList.join();
+      console.log(tutsLinks);
+      var info = '<div class="language panel panel-default"><div class="name-label panel-heading"><h4>' + data[i].name + '</h4></div><div class="info hidden panel-body"> <b>Paradigm</b>: ' + data[i].paradigm + '<br><b>Use</b>: ' + data[i].use + '<br><b>Type</b>: ' + data[i].type + '<br><b>Tutorial(s)</b>: ' + tutsLinks + '</div></div>';
       $(".display-data").append(info);
     }
     $(".language").click(function(){
