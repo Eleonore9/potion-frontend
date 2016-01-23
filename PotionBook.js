@@ -38,7 +38,7 @@ $( document ).ready(function() {
   var allInfo = $(".language").find(".info");
   
   // Filter by paradigm
-  $(".btn-paradigm").click(function() {
+  $(".filters .btn-paradigm").click(function() {
     console.log("Filter / paradigm");
     
     var selectedParadigm = $(this).val();
@@ -51,7 +51,7 @@ $( document ).ready(function() {
     }
   });
   // Filter by type
-  $(".btn-paradigm").click(function() {
+  $(".btn-type").click(function() {
     console.log("Filter / type");
     
     var selectedType = $(this).val();
@@ -64,7 +64,7 @@ $( document ).ready(function() {
     }
   });
   // Filter by use
-  $(".btn-paradigm").click(function() {
+  $(".btn-use").click(function() {
     console.log("Filter / use");
     
     var selectedUse = $(this).val();
