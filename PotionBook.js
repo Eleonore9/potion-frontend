@@ -6,7 +6,7 @@ $( document ).ready(function() {
   $(".label.paradigm").click(function(){
     $.getJSON("https://potion-making.herokuapp.com/all-paradigms" , function() {
     }).done(function(data) {
-      console.log( "SUCCESS!" );
+      console.log( "All paradigms!" );
       $(".filters").empty();
       for(i=0; i < data.length; i++){ $(".filters")
 				      .append('<button type="button" class="btn btn-default btn-paradigm">' + data[i] + '</button>')}
@@ -17,7 +17,7 @@ $( document ).ready(function() {
   $(".label.type").click(function(){
     $.getJSON("https://potion-making.herokuapp.com/all-types" , function() {
     }).done(function(data) {
-      console.log( "SUCCESS!!" );
+      console.log( "All types!" );
       $(".filters").empty();
       for(i=0; i < data.length; i++){ $(".filters")
 				      .append('<button type="button" class="btn btn-default btn-type">' + data[i] + '</button>')}
@@ -28,7 +28,7 @@ $( document ).ready(function() {
   $(".label.use").click(function(){
     $.getJSON("https://potion-making.herokuapp.com/all-uses" , function() {
     }).done(function(data) {
-      console.log( "SUCCESS!!!" );
+      console.log( "All uses!" );
       $(".filters").empty();
       for(i=0; i < data.length; i++){ $(".filters")
 				      .append('<button type="button" class="btn btn-default btn-use">' + data[i] + '</button>')}
@@ -39,7 +39,11 @@ $( document ).ready(function() {
   
   // Filter by paradigm
   $(".btn-paradigm").click(function() {
+    console.log("Filter / paradigm");
+    
     var selectedParadigm = $(this).val();
+    console.log("selected paradigm", selectedParadigm);
+    
     for(i=0; i < allInfo.length; i++){
       if(allInfo[i].attr("display") === "inline" && !allInfo[i].val().contains(selectedParadigm)){
 	allInfo[i].find(".language").attr("display", "none");
@@ -48,7 +52,11 @@ $( document ).ready(function() {
   });
   // Filter by type
   $(".btn-paradigm").click(function() {
+    console.log("Filter / type");
+    
     var selectedType = $(this).val();
+    console.log("selected type", selectedType);
+    
     for(i=0; i < allInfo.length; i++){
       if(allInfo[i].attr("display") === "inline" && !allInfo[i].val().contains(selectedType)){
 	allInfo[i].find(".language").attr("display", "none");
@@ -57,7 +65,11 @@ $( document ).ready(function() {
   });
   // Filter by use
   $(".btn-paradigm").click(function() {
+    console.log("Filter / use");
+    
     var selectedUse = $(this).val();
+    console.log("selected use", selectedUse);
+
     for(i=0; i < allInfo.length; i++){
       if(allInfo[i].attr("display") === "inline" && !allInfo[i].val().contains(selectedUse)){
 	allInfo[i].find(".language").attr("display", "none");
@@ -71,7 +83,7 @@ function getAllData() {
   // Get all programming languages info
   $.getJSON( "https://potion-making.herokuapp.com/all-data", function() {
   }).done(function(data) {
-    console.log( "SUCCESS" );
+    console.log( "ALL THE DATAZ!" );
     for(i=0; i < data.length; i++){
       var tuts = data[i].tutorials;
       var linksList = [];
