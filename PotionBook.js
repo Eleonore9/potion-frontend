@@ -2,6 +2,8 @@ $( document ).ready(function() {
   // Get all info available
   getAllData();
 
+  var allInfo = $(".language").find(".info");
+
   // Get all paradigms when clicking on the "paradigm" button
   $(".label.paradigm").click(function(){
     $.getJSON("https://potion-making.herokuapp.com/all-paradigms" , function() {
@@ -10,6 +12,19 @@ $( document ).ready(function() {
       $(".filters").empty();
       for(i=0; i < data.length; i++){ $(".filters")
 				      .append('<button type="button" class="btn btn-default btn-paradigm">' + data[i] + '</button>')}
+    });
+    // Filter by paradigm
+    $(".btn-paradigm").click(function() {
+      console.log("Filter / paradigm");
+    
+      var selectedParadigm = $(this).val();
+      console.log("selected paradigm", selectedParadigm);
+    
+      for(i=0; i < allInfo.length; i++){
+	if(allInfo[i].attr("display") === "inline" && !allInfo[i].val().contains(selectedParadigm)){
+	  allInfo[i].find(".language").attr("display", "none");
+        }
+      }
     });
   });
 
@@ -22,6 +37,19 @@ $( document ).ready(function() {
       for(i=0; i < data.length; i++){ $(".filters")
 				      .append('<button type="button" class="btn btn-default btn-type">' + data[i] + '</button>')}
     });
+    // Filter by type
+    $(".btn-type").click(function() {
+      console.log("Filter / type");
+    
+      var selectedType = $(this).val();
+      console.log("selected type", selectedType);
+    
+      for(i=0; i < allInfo.length; i++){
+	if(allInfo[i].attr("display") === "inline" && !allInfo[i].val().contains(selectedType)){
+	  allInfo[i].find(".language").attr("display", "none");
+	}
+      }
+    });
   });
 
   // Get all uses when clicking on the "use" button
@@ -33,48 +61,19 @@ $( document ).ready(function() {
       for(i=0; i < data.length; i++){ $(".filters")
 				      .append('<button type="button" class="btn btn-default btn-use">' + data[i] + '</button>')}
     });
-  });
+    // Filter by use
+    $(".btn-use").click(function() {
+      console.log("Filter / use");
+    
+      var selectedUse = $(this).val();
+      console.log("selected use", selectedUse);
 
-  var allInfo = $(".language").find(".info");
-  
-  // Filter by paradigm
-  $(".filters .btn-paradigm").click(function() {
-    console.log("Filter / paradigm");
-    
-    var selectedParadigm = $(this).val();
-    console.log("selected paradigm", selectedParadigm);
-    
-    for(i=0; i < allInfo.length; i++){
-      if(allInfo[i].attr("display") === "inline" && !allInfo[i].val().contains(selectedParadigm)){
-	allInfo[i].find(".language").attr("display", "none");
+      for(i=0; i < allInfo.length; i++){
+	if(allInfo[i].attr("display") === "inline" && !allInfo[i].val().contains(selectedUse)){
+	  allInfo[i].find(".language").attr("display", "none");
+	}
       }
-    }
-  });
-  // Filter by type
-  $(".btn-type").click(function() {
-    console.log("Filter / type");
-    
-    var selectedType = $(this).val();
-    console.log("selected type", selectedType);
-    
-    for(i=0; i < allInfo.length; i++){
-      if(allInfo[i].attr("display") === "inline" && !allInfo[i].val().contains(selectedType)){
-	allInfo[i].find(".language").attr("display", "none");
-      }
-    }
-  });
-  // Filter by use
-  $(".btn-use").click(function() {
-    console.log("Filter / use");
-    
-    var selectedUse = $(this).val();
-    console.log("selected use", selectedUse);
-
-    for(i=0; i < allInfo.length; i++){
-      if(allInfo[i].attr("display") === "inline" && !allInfo[i].val().contains(selectedUse)){
-	allInfo[i].find(".language").attr("display", "none");
-      }
-    }
+    });
   });
 });
 
