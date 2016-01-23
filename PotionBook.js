@@ -1,34 +1,68 @@
 $( document ).ready(function() {
+  // Get all info available
   getAllData();
-  
+
+  // Get all paradigms when clicking on the "paradigm" button
   $(".label.paradigm").click(function(){
     $.getJSON("https://potion-making.herokuapp.com/all-paradigms" , function() {
     }).done(function(data) {
       console.log( "SUCCESS!" );
       $(".filters").empty();
       for(i=0; i < data.length; i++){ $(".filters")
-				      .append('<button type="button" class="btn btn-default">' + data[i] + '</button>')}
+				      .append('<button type="button" class="btn btn-default btn-paradigm">' + data[i] + '</button>')}
     });
   });
 
+  // Get all types when clicking on the "type" button
   $(".label.type").click(function(){
     $.getJSON("https://potion-making.herokuapp.com/all-types" , function() {
     }).done(function(data) {
       console.log( "SUCCESS!!" );
       $(".filters").empty();
       for(i=0; i < data.length; i++){ $(".filters")
-				      .append('<button type="button" class="btn btn-default">' + data[i] + '</button>')}
+				      .append('<button type="button" class="btn btn-default btn-type">' + data[i] + '</button>')}
     });
   });
 
+  // Get all uses when clicking on the "use" button
   $(".label.use").click(function(){
     $.getJSON("https://potion-making.herokuapp.com/all-uses" , function() {
     }).done(function(data) {
       console.log( "SUCCESS!!!" );
       $(".filters").empty();
       for(i=0; i < data.length; i++){ $(".filters")
-				      .append('<button type="button" class="btn btn-default">' + data[i] + '</button>')}
+				      .append('<button type="button" class="btn btn-default btn-use">' + data[i] + '</button>')}
     });
+  });
+
+  var allInfo = $(".language").find(".info");
+  
+  // Filter by paradigm
+  $(".btn-paradigm").click(function() {
+    var selectedParadigm = $(this).val();
+    for(i=0; i < allInfo.length; i++){
+      if(allInfo[i].attr("display") === "inline" && !allInfo[i].val().contains(selectedParadigm)){
+	allInfo[i].find(".language").attr("display", "none");
+      }
+    }
+  });
+  // Filter by type
+  $(".btn-paradigm").click(function() {
+    var selectedType = $(this).val();
+    for(i=0; i < allInfo.length; i++){
+      if(allInfo[i].attr("display") === "inline" && !allInfo[i].val().contains(selectedType)){
+	allInfo[i].find(".language").attr("display", "none");
+      }
+    }
+  });
+  // Filter by use
+  $(".btn-paradigm").click(function() {
+    var selectedUse = $(this).val();
+    for(i=0; i < allInfo.length; i++){
+      if(allInfo[i].attr("display") === "inline" && !allInfo[i].val().contains(selectedUse)){
+	allInfo[i].find(".language").attr("display", "none");
+      }
+    }
   });
 });
 
@@ -47,7 +81,7 @@ function getAllData() {
       }
       var tutsLinks = linksList.join();
       //console.log(tutsLinks);
-      var info = '<div class="language panel panel-default"><div class="name-label panel-heading"><h4>' + data[i].name + '</h4></div><div class="info hidden panel-body"> <b>Paradigm</b>: ' + data[i].paradigm + '<br><b>Use</b>: ' + data[i].use + '<br><b>Type</b>: ' + data[i].type + '<br><b>Tutorial(s)</b>: ' + tutsLinks + '</div></div>';
+      var info = '<div class="language panel panel-default"><div class="name-label panel-heading"><h4>' + data[i].name + '</h4></div><div class="info hidden panel-body"><p class="p-paradigm"><b>Paradigm</b>: ' + data[i].paradigm + '</p><p class="p-use"><b>Use</b>: ' + data[i].use + '</p><p class="p-type"><b>Type</b>: ' + data[i].type + '</p><p class="p-tutorials"><b>Tutorial(s)</b>: ' + tutsLinks + '</p></div></div>';
       $(".display-data").append(info);
     }
     $(".language").click(function(){
