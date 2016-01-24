@@ -92,7 +92,7 @@ function getAllData() {
       }
       var tutsLinks = linksList.join();
       //console.log(tutsLinks);
-      var info = '<div class="language panel panel-default"><div class="name-label panel-heading"><h4>' + data[i].name + '</h4></div><div class="info hidden panel-body"><p class="p-paradigm"><b>Paradigm</b>: ' + data[i].paradigm + '</p><p class="p-use"><b>Use</b>: ' + data[i].use + '</p><p class="p-type"><b>Type</b>: ' + data[i].type + '</p><p class="p-tutorials"><b>Tutorial(s)</b>: ' + tutsLinks + '</p></div></div>';
+      var info = '<div class="language panel panel-default"><div class="name-label panel-heading"><h3>' + data[i].name + '</h3></div><div class="info hidden panel-body"><p class="p-paradigm"><b>Paradigm</b>: ' + data[i].paradigm + '</p><p class="p-use"><b>Use</b>: ' + data[i].use + '</p><p class="p-type"><b>Type</b>: ' + data[i].type + '</p><p class="p-tutorials"><b>Tutorial(s)</b>: ' + tutsLinks + '</p></div></div>';
       $(".display-data").append(info);
     }
     $(".language").click(function(){
