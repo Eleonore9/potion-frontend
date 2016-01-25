@@ -1,8 +1,29 @@
 $( document ).ready(function() {
+  
   // Get all info available
-  getAllData();
+  $.getJSON( "https://potion-making.herokuapp.com/all-data", function() {
+  }).done(function(data) {
+    console.log( "ALL THE DATAZ!" );
+    for(i=0; i < data.length; i++){
+      var tuts = data[i].tutorials;
+      var linksList = [];
+      for(j=0; j < tuts.length; j++){
+	var link = '<a href="' + tuts[j] + '">' + tuts[j] + '</a>';
+	linksList.push(link);
+      }
+      var tutsLinks = linksList.join();
 
-  var allInfo = $(".language").find(".info");
+      var info = '<div class="language panel panel-default"><div class="name-label panel-heading"><h3>' + data[i].name + '</h3></div><div class="info hidden panel-body"><p class="p-paradigm"><b>Paradigm</b>: ' + data[i].paradigm + '</p><p class="p-use"><b>Use</b>: ' + data[i].use + '</p><p class="p-type"><b>Type</b>: ' + data[i].type + '</p><p class="p-tutorials"><b>Tutorial(s)</b>: ' + tutsLinks + '</p></div></div>';
+      $(".display-data").append(info);
+    }
+    $(".language").click(function(){
+      $(".display-data").find(".info.panel-body").addClass("hidden");
+      $(this).find(".info.hidden.panel-body").removeClass("hidden");
+    });
+
+  // Functionality of the filter buttons
+  var allInfo = $(".display-data").find(".language .info");
+  console.log("allInfo: ", allInfo);
 
   // Get all paradigms when clicking on the "paradigm" button
   $(".label.paradigm").click(function(){
@@ -16,19 +37,19 @@ $( document ).ready(function() {
       // Filter by paradigm
       $(".filters .btn-paradigm").click(function() {
 	console.log("Filter / paradigm");
-    
-	var selectedParadigm = $(this).val();
-	console.log("selected paradigm", selectedParadigm);
+
+	var selectedParadigm = $(this).text();
+	console.log("selected paradigm: ", selectedParadigm);
     
 	for(i=0; i < allInfo.length; i++){
-	  if(allInfo[i].attr("display") === "inline" && !allInfo[i].val().contains(selectedParadigm)){
-	    allInfo[i].find(".language").attr("display", "none");
+	  var element = $(allInfo[i]);
+	  if(element.attr("display") === "inline" && !element.text().contains(selectedParadigm)){
+	    element.find(".language").attr("display", "none");
           }
 	}
       });
     });
   });
-
 
   // Get all types when clicking on the "type" button
   $(".label.type").click(function(){
@@ -43,11 +64,11 @@ $( document ).ready(function() {
       $(".btn-type").click(function() {
 	console.log("Filter / type");
     
-	var selectedType = $(this).val();
-	console.log("selected type", selectedType);
+	var selectedType = $(this).text();
+	console.log("selected type: ", selectedType);
     
 	for(i=0; i < allInfo.length; i++){
-	  if(allInfo[i].attr("display") === "inline" && !allInfo[i].val().contains(selectedType)){
+	  if(allInfo[i].attr("display") === "inline" && !allInfo[i].text().contains(selectedType)){
 	    allInfo[i].find(".language").attr("display", "none");
 	  }
 	}
@@ -55,7 +76,6 @@ $( document ).ready(function() {
     });
   });
 
-  
   // Get all uses when clicking on the "use" button
   $(".label.use").click(function(){
     $.getJSON("https://potion-making.herokuapp.com/all-uses" , function() {
@@ -69,48 +89,34 @@ $( document ).ready(function() {
       $(".btn-use").click(function() {
 	console.log("Filter / use");
     
-	var selectedUse = $(this).val();
-	console.log("selected use", selectedUse);
+	var selectedUse = $(this).text();
+	console.log("selected use: ", selectedUse);
 
 	for(i=0; i < allInfo.length; i++){
-	  if(allInfo[i].attr("display") === "inline" && !allInfo[i].val().contains(selectedUse)){
+	  if(allInfo[i].attr("display") === "inline" && !allInfo[i].text().contains(selectedUse)){
 	    allInfo[i].find(".language").attr("display", "none");
 	  }
 	}
       });
     });
   });
-});
 
-
-function getAllData() {
-  // Get all programming languages info
-  $.getJSON( "https://potion-making.herokuapp.com/all-data", function() {
-  }).done(function(data) {
-    console.log( "ALL THE DATAZ!" );
-    for(i=0; i < data.length; i++){
-      var tuts = data[i].tutorials;
-      var linksList = [];
-      for(j=0; j < tuts.length; j++){
-	var link = '<a href="' + tuts[j] + '">' + tuts[j] + '</a>';
-	linksList.push(link);
-      }
-      var tutsLinks = linksList.join();
-      //console.log(tutsLinks);
-      var info = '<div class="language panel panel-default"><div class="name-label panel-heading"><h3>' + data[i].name + '</h3></div><div class="info hidden panel-body"><p class="p-paradigm"><b>Paradigm</b>: ' + data[i].paradigm + '</p><p class="p-use"><b>Use</b>: ' + data[i].use + '</p><p class="p-type"><b>Type</b>: ' + data[i].type + '</p><p class="p-tutorials"><b>Tutorial(s)</b>: ' + tutsLinks + '</p></div></div>';
-      $(".display-data").append(info);
-    }
-    $(".language").click(function(){
-      $(".display-data").find(".info.panel-body").addClass("hidden");
-      $(this).find(".info.hidden.panel-body").removeClass("hidden");
-    });
+    
   })
   .fail(function(allData, textStatus, error) {
     console.log( "error" );
     var err = textStatus + ", " + error;
     console.log( "Request Failed: " + err );
-  })
-}
+  });
+ });
+
+
+  
+
+
+
+  
+
 
 
 // "https://potion-making.herokuapp.com/all-data"
