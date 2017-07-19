@@ -17,7 +17,7 @@
     <title>Potion book</title>
   </head>
 
-  <body>
+  <body ng-app>
 
     <div class="site-wrapper">
 
@@ -28,33 +28,33 @@
           <div class="masthead clearfix">
             <div class="inner">
               <h1 class="masthead-brand">Potion book</h1>
-              <!--<nav>
-                <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Contact</a></li>
-                </ul>
-              </nav>-->
             </div>
           </div>
 
+	  <div id="main" ng-app>
           <div class="container">
 	    <div class="jumbotron top">
               <h3>Filter languages by</h3>
 	      <h3>
-		<!--<span class="label label-default name">Name</span>-->
-		<a href="#" class="label label-primary paradigm">Paradigm</a>
-		<a href="#" class="label label-success type">Type</a>
-		<a href="#" class="label label-info use">Use</a>
+		<nav class="{{active}}" ng-click="$event.preventDefault()">
+		  <a href="#" class="label label-primary paradigm" ng-click="active='paradigm'">Paradigm</a>
+		  <a href="#" class="label label-success type" ng-click="active='type'">Type</a>
+		  <a href="#" class="label label-info use" ng-click="active='use'">Use</a>
+		</nav>
 	      </h3>
 	      <div class="filters btn-group" role="group" aria-label="...">
 	      </div>
+	      <p ng-hide="active">Please click a menu item</p>
+	      <p ng-show="active">You chose <b>{{active}}</b></p>
 	    </div>
+
 	    <div class="jumbotron">
 	      <div class="display-data">
 	      </div>
 	    </div>
+
           </div>
+          <div id="main" ng-app>
 
           <div class="mastfoot">
             <div class="inner">
@@ -67,6 +67,6 @@
       </div>
 
     </div>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
   </body>
 </html>
