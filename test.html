@@ -32,12 +32,24 @@
 
 	  <div class="container">
 	    <div class="jumbotron top">
-	      <p>There are {{book.recipes.length}} recipes in the potion Book</p>
-	      <h3>Filter recipe by</h3>
+	      <button type="button" class="btn btn-default btn-paradigm"
+		      ng-click="book.getFilters('paradigms')">paradigm</button>
+	      <button type="button" class="btn btn-default btn-type"
+		      ng-click="book.getFilters('types')">type</button>
+	      <button type="button" class="btn btn-default btn-use"
+		      ng-click="book.getFilters('uses')">use</button>
+
+	      <h3>Click on a filter</h3>
+
+	      <span>
+		<button type="button" class="btn btn-default"
+			ng-repeat="f in book.filters">{{f}}</button>
+              </span>
 	    </div>
 
             <div class="jumbotron">
-	      <div class="language panel panel-default" ng-repeat="recipe in book.recipes">
+	      <div class="language panel panel-default"
+		   ng-repeat="recipe in book.recipes | orderBy: 'name'">
 		<div class="name-label panel-heading">
 		  <h3>{{recipe.name}}</h3>
 		</div>
