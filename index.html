@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="potionBook">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,11 +13,11 @@
     <link rel="icon" href="../../favicon.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="PotionBook.js"></script>
+    <script src="app.js" type="application/javascript"></script>
     <title>Potion book</title>
   </head>
 
-  <body ng-app>
+  <body>
 
     <div class="site-wrapper">
 
@@ -31,7 +31,7 @@
             </div>
           </div>
 
-	  <div id="main" ng-app>
+	  <div ng-controller="bookController as book">
           <div class="container">
 	    <div class="jumbotron top">
               <h3>Filter languages by</h3>
@@ -44,17 +44,17 @@
 	      </h3>
 	      <div class="filters btn-group" role="group" aria-label="...">
 	      </div>
-	      <p ng-hide="active">Please click a menu item</p>
-	      <p ng-show="active">You chose <b>{{active}}</b></p>
+	      <p ng-hide="active">You can filter a characteristic</p>
+	      <p ng-show="active"><b>{{active}}</b></p>
 	    </div>
 
 	    <div class="jumbotron">
+	      <ol><li>{{book.recipe.name}}</li></ol>
 	      <div class="display-data">
 	      </div>
 	    </div>
 
           </div>
-          <div id="main" ng-app>
 
           <div class="mastfoot">
             <div class="inner">

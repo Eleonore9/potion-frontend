@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="potionBook">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Lookup programming languages resources">
+    <meta name="author" content="Éléonore Mayola">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	  integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="cover.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <script src="app.js" type="application/javascript"></script>
+    <title>Test angularjs for Potion Book app</title>
+  </head>
+
+  <body>
+
+    <div ng-controller="BookController as book">
+      <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h1 class="masthead-brand">Potion book</h1>
+            </div>
+          </div>
+
+	  <div class="container">
+	    <div class="jumbotron top">
+	      <p>There are {{book.recipes.length}} recipes in the potion Book</p>
+	      <h3>Filter recipe by</h3>
+	    </div>
+
+            <div class="jumbotron">
+	      <div class="language panel panel-default" ng-repeat="recipe in book.recipes">
+		<div class="name-label panel-heading">
+		  <h3>{{recipe.name}}</h3>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+
+	</div>
+
+      </div>
+      </div>
+
+
+
+    </div>
+
+  </body>
+</html>
