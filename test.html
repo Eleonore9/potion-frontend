@@ -43,7 +43,9 @@
 
 	      <span>
 		<button type="button" class="btn btn-default"
-			ng-repeat="f in book.filters">{{f}}</button>
+			ng-repeat="f in book.filters"
+			ng-click="book.selectRecipes('{{f}}')">{{f}}
+		</button>
               </span>
 	    </div>
 
