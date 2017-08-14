@@ -44,7 +44,7 @@
 	      <span>
 		<button type="button" class="btn btn-default"
 			ng-repeat="f in book.filters"
-			ng-click="book.selectRecipes(f)">{{f}}
+			ng-click="book.updateFilterOption(f)">{{f}}
 		</button>
               </span>
 	      <span>{{book.debug}}</span>
@@ -52,7 +52,7 @@
 
             <div class="jumbotron">
 	      <div class="language panel panel-default"
-		   ng-repeat="recipe in book.recipes | orderBy: 'name'">
+		   ng-repeat="recipe in book.recipes | selectRecipes:book.filterOption | orderBy: 'name'">
 		<div class="name-label panel-heading">
 		  <h3>{{recipe.name}}</h3>
 		</div>
