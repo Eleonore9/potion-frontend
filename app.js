@@ -25,22 +25,22 @@ angular.module('potionBook', [])
 
     book.selectRecipes = function(filterOption){
       if(book.paradigms.indexOf(filterOption) != -1){
-	console.log(1);
-    	book.recipes = book.recipes.filter(function(e){
-    	                 e.paradigm == filterOption;
-	               });
+      	book.debug = 1;
+      	book.recipes = book.recipes.filter(function(e){
+      	                 return e.paradigm === filterOption;
+      	               });
       }
       else if(book.types.indexOf(filterOption) != -1){
-	console.log(2);
-    	book.recipes = book.recipes.filter(function(e){
-    	                 e.type == filterOption;
-	               });
+      	book.debug = 2;
+      	book.recipes = book.recipes.filter(function(e){
+      	                 return e.type === filterOption;
+      	               });
       }
       else if(book.uses.indexOf(filterOption) != -1){
-	console.log(3);
-    	book.recipes = book.recipes.filter(function(e){
-    	                 e.use.indexOf(filterOption);
-	               });
+      	book.debug = 3;
+      	book.recipes = book.recipes.filter(function(e){
+      	                 return e.use.indexOf(filterOption);
+      	               });
       }
     }
 
